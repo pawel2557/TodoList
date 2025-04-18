@@ -1,11 +1,12 @@
 .App{
   min-height: 100vh;
+  padding-top: 10px;
+  padding: 10px 10px;
 }
 
 .container{
   max-width: 1200px;
   margin: auto;
-  padding: 10px 20px;
 }
 
 header {
@@ -87,6 +88,19 @@ header .themeSelector .activeTheme{
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+@media only screen and (max-width: 480px) {
+  .addTask form {
+    flex-direction: column;
+  }
+
+  .addTask form button {
+    width: 100%;
+    margin-top: 8px;
+    font-size: 16px;
+  }
 }
 
 .addTask form button:hover{
