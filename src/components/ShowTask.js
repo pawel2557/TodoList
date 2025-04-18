@@ -2,7 +2,7 @@ import deleteIcon from "../assets/x-square-fill.svg"
 import editIcon from "../assets/pencil-square.svg"
 const ShowTask = ({tasklist, setTasklist, task, setTask}) => {
   const handleEdit = (id) => {
-    const selectedTask = tasklist.find(task => task.id)
+    const selectedTask = tasklist.find(task => task.id === id)
     setTask(selectedTask)
 
   }

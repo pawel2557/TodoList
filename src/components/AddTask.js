@@ -2,15 +2,16 @@ const AddTask = ({ tasklist, setTasklist, task, setTask }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const date = new Date();
+    console.log(task.id);
     if (task.id) {
-      const updatedTaskList = tasklist.map((taskIn)=> taskIn.id===task.id ? 
+      const updatedTaskList = tasklist.map((taskIn)=> (taskIn.id===task.id) ? 
       {
         id: taskIn.id, 
         name: task.name, 
-        time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`
-      } : taskIn
-    );
+        time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`} : taskIn);
+    console.log(updatedTaskList);
     setTasklist(updatedTaskList);
+    setTask({});
     } else {
       const newTask = {
         id: date.getTime(),
@@ -18,13 +19,13 @@ const AddTask = ({ tasklist, setTasklist, task, setTask }) => {
         time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`
       }
       setTasklist([...tasklist, newTask]);
-      event.target.task.value = "";
+      setTask({});
     }
   }
   return (
     <section className="addTask">
       <form onSubmit={handleSubmit}>
-        <input type="text" name="task" value={task.name} autoComplete="off" placeholder="add a task" maxLength={25} onChange={e => setTask({...task, name: e.target.value})} />
+        <input type="text" name="task" value={task.name || ""} autoComplete="off" placeholder="add a task" maxLength={25} onChange={e => setTask({...task, name: e.target.value})} />
         <button type="submit">Add</button>
       </form>
     </section>
